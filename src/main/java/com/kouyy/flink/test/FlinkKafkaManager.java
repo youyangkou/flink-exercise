@@ -1,6 +1,6 @@
 package com.kouyy.flink.test;
 
-import com.kouyy.flink.test.ConsumerDeserializationSchema;
+import com.kouyy.flink.connector.ObjectDeserializationSchema;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer09;
 
 import java.util.Properties;
@@ -31,7 +31,7 @@ public class FlinkKafkaManager<T> {
 
     public FlinkKafkaConsumer09<T> build(Class<T> clazz) {
         if (checkProperties()) {
-            return new FlinkKafkaConsumer09<T>(topic, new ConsumerDeserializationSchema(clazz), properties);
+            return new FlinkKafkaConsumer09<T>(topic, new ObjectDeserializationSchema(clazz), properties);
         } else {
             return null;
         }

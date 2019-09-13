@@ -1,4 +1,4 @@
-package com.kouyy.flink.test;
+package com.kouyy.flink.connector;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.flink.api.common.serialization.DeserializationSchema;
@@ -10,11 +10,12 @@ import java.io.IOException;
 /**
  * @author kouyouyang
  * @date 2019-08-06 17:44
+ * Kafka反序列化类, new String(bytes) 是json格式
  */
-public class ConsumerDeserializationSchema<T> implements DeserializationSchema<T> {
+public class ObjectDeserializationSchema<T> implements DeserializationSchema<T> {
     private Class<T> clazz;
 
-    public ConsumerDeserializationSchema(Class<T> clazz) {
+    public ObjectDeserializationSchema(Class<T> clazz) {
         this.clazz = clazz;
     }
 

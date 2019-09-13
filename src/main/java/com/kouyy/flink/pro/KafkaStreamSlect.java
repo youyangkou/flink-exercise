@@ -40,11 +40,11 @@ public class KafkaStreamSlect {
                 org.apache.flink.api.common.time.Time.of(5, TimeUnit.MINUTES),
                 org.apache.flink.api.common.time.Time.of(10, TimeUnit.SECONDS)
         ));
-//        env.setParallelism(20);//测试环境设置，上线不设置
+        env.setParallelism(3);//测试环境设置，上线不设置
 
         Properties properties = FlinkPropertyUtil.getPropertiesFile("kafka_consumer.properties");
-
         FlinkKafkaConsumer010<String> kafkaConsumer = new FlinkKafkaConsumer010<>("gio", new SimpleStringSchema(), properties);
+
         kafkaConsumer.setStartFromLatest();
         kafkaConsumer.setCommitOffsetsOnCheckpoints(true);//检查点成功才提交offset
 
@@ -95,7 +95,7 @@ public class KafkaStreamSlect {
 
         FlinkKafkaProducer011<String> pvarProducer = new FlinkKafkaProducer011<String>(
                 "kafka00:9092,kafka01:9092,kafka02:9092",            // broker list
-                "pvar",                  // target topic
+                "cstm",                  // target topic
                 new SimpleStringSchema());
 
 //        cstmProducer.setWriteTimestampToKafka(true);
